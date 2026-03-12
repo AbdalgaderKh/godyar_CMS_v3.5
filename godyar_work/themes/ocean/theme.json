@@ -1,0 +1,12 @@
+{
+  "name": "Ocean",
+  "version": "1.1.0",
+  "author": "Godyar",
+  "supports": [
+    "dark_mode",
+    "lazy_images",
+    "reading_progress",
+    "theme_customizer",
+    "theme_settings"
+  ]
+}

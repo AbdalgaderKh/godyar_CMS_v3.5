@@ -1,0 +1,14 @@
+{
+  "name": "Godyar Default",
+  "version": "1.2.0",
+  "author": "Godyar",
+  "supports": [
+    "breaking_news",
+    "dark_mode",
+    "lazy_images",
+    "reading_progress",
+    "sticky_header",
+    "theme_customizer",
+    "theme_settings"
+  ]
+}

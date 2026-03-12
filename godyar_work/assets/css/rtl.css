@@ -1,0 +1,20 @@
+
+html[dir="rtl"] body{ direction:rtl; text-align:right; }
+html[dir="rtl"] .container, html[dir="rtl"] .container-fluid{ direction:rtl; }
+html[dir="rtl"] .site-header .header-inner{ flex-direction:row-reverse; }
+html[dir="rtl"] .site-header .brand-block{ flex-direction:row-reverse; }
+html[dir="rtl"] .site-header .hdr-utils{ justify-content:flex-start; }
+html[dir="rtl"] .nav, html[dir="rtl"] .navbar-nav{ flex-direction:row-reverse; }
+html[dir="rtl"] .dropdown-menu{ text-align:right; }
+html[dir="rtl"] .form-control{ text-align:right; }
+
+html[dir="rtl"] .row{ direction:rtl; }
+html[dir="rtl"] .text-start{ text-align:right !important; }
+html[dir="rtl"] .text-end{ text-align:left !important; }
+
+.gdy-footer{ margin-top:40px; padding:28px 0; border-top:1px solid rgba(0,0,0,.08); }
+.gdy-footer .footer-grid{ display:grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap:18px; }
+@media (max-width: 992px){ .gdy-footer .footer-grid{ grid-template-columns: repeat(2, minmax(0,1fr)); } }
+@media (max-width: 576px){ .gdy-footer .footer-grid{ grid-template-columns: 1fr; } }
+
+body{ overflow-x:hidden; }

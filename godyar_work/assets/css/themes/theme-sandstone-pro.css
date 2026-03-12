@@ -1,0 +1,18 @@
+:root.theme-sandstone-pro,
+html[data-theme="sandstone-pro"] {
+  --gdy-primary: #8b5e34;
+  --gdy-accent: #c08a52;
+  --gdy-surface: #fffdf8;
+  --gdy-surface-soft: #f8f2e8;
+  --gdy-heading: #2f2418;
+  --gdy-text-soft: #6b5a47;
+}
+
+html[data-theme="sandstone-pro"] body {
+  background: linear-gradient(180deg, #fffdf8 0%, #f6efe4 100%);
+}
+
+html[data-theme="sandstone-pro"] .gdy-glass-card,
+html[data-theme="sandstone-pro"] .gdy-section-shell {
+  background: linear-gradient(180deg, rgba(255,253,248,.97), rgba(247,239,228,.92));
+}

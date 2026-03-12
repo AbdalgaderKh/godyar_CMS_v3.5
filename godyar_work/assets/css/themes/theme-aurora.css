@@ -1,0 +1,41 @@
+:root.theme-aurora,
+html.theme-aurora,
+body.theme-aurora {
+  --gdy-primary: #6d28d9;
+  --gdy-accent: #22c55e;
+  --gdy-surface: #ffffff;
+  --gdy-surface-soft: #f8fafc;
+  --gdy-text: #1e1b4b;
+  --gdy-text-soft: #5b5f7a;
+}
+
+body.theme-aurora {
+  background:
+    radial-gradient(circle at top right, rgba(109,40,217,.10), transparent 30%),
+    radial-gradient(circle at top left, rgba(34,197,94,.10), transparent 28%),
+    linear-gradient(180deg, #f8fafc, #eef2ff 60%, #f8fafc);
+  color: var(--gdy-text);
+}
+
+.theme-aurora .hero-card,
+.theme-aurora .gdy-static-page,
+.theme-aurora .gdy-legal-page,
+.theme-aurora .gdy-footer-card {
+  background: rgba(255,255,255,.92);
+  border-color: rgba(109,40,217,.12);
+}
+
+.theme-aurora .hero-badge,
+.theme-aurora .gdy-page-hero__kicker,
+.theme-aurora .gdy-chip {
+  background: rgba(109,40,217,.10);
+  color: #5b21b6;
+}
+
+.theme-aurora .btn,
+.theme-aurora button,
+.theme-aurora .gdy-contact-submit button {
+  background: linear-gradient(135deg, #6d28d9, #22c55e);
+  border: 0;
+  color: #fff;
+}

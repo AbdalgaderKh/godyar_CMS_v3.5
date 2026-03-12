@@ -1,0 +1,10 @@
+godyar CMS v2.3.1 CSRF + headers fix
+
+Applied fixes:
+- Removed leading whitespace/BOM before <?php across PHP files that were sending output early.
+- Fixed languages/ar.php, languages/en.php, languages/fr.php and related files to avoid "headers already sent".
+- Updated frontend/views/login.php to use language-aware URLs for login/register/home.
+
+Expected effect:
+- Fix CSRF validation issues caused by broken session/header flow.
+- Fix http_response_code/header warnings triggered by early output from language files.

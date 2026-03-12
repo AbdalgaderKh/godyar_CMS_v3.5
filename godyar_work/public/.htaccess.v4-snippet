@@ -1,0 +1,12 @@
+# Godyar CMS v4 optional front controller
+# Use only after testing public/index.v4.php
+
+RewriteEngine On
+
+# Keep existing files/directories accessible
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# Optional v4 entrypoint
+RewriteRule ^ index.v4.php [L,QSA]

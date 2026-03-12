@@ -1,0 +1,186 @@
+# Godyar CMS v3.8.8 Direct Template Patch Pack
+
+FILE: frontend/views/partials/header.php
+REPLACE:
+الحساب
+WITH:
+<?= __('auth.account', 'Account'); ?>
+
+REPLACE:
+تسجيل الدخول
+WITH:
+<?= __('auth.login', 'Login'); ?>
+
+REPLACE:
+إنشاء حساب
+WITH:
+<?= __('auth.register', 'Create Account'); ?>
+
+REPLACE:
+روابط سريعة
+WITH:
+<?= __('footer.quick_links', 'Quick Links'); ?>
+
+REPLACE:
+من نحن
+WITH:
+<?= __('footer.about', 'About Us'); ?>
+
+REPLACE:
+سياسة الخصوصية
+WITH:
+<?= __('footer.privacy', 'Privacy Policy'); ?>
+
+REPLACE:
+الشروط والأحكام
+WITH:
+<?= __('footer.terms', 'Terms & Conditions'); ?>
+
+REPLACE:
+اتصل بنا
+WITH:
+<?= __('footer.contact', 'Contact Us'); ?>
+
+REPLACE:
+خريطة الموقع
+WITH:
+<?= __('footer.sitemap', 'Sitemap'); ?>
+
+FILE: frontend/views/login.php
+REPLACE:
+أدخل بياناتك للوصول إلى حسابك.
+WITH:
+<?= __('auth.login_desc', 'Enter your details to access your account.'); ?>
+
+REPLACE:
+البريد الإلكتروني أو اسم المستخدم
+WITH:
+<?= __('auth.email_or_username', 'Email or username'); ?>
+
+REPLACE:
+كلمة المرور
+WITH:
+<?= __('auth.password', 'Password'); ?>
+
+REPLACE:
+تذكرني
+WITH:
+<?= __('auth.remember_me', 'Remember me'); ?>
+
+REPLACE:
+دخول
+WITH:
+<?= __('auth.submit_login', 'Sign in'); ?>
+
+REPLACE:
+العودة للرئيسية
+WITH:
+<?= __('nav.back_home', 'Back to Home'); ?>
+
+FILE: frontend/views/register.php
+REPLACE:
+أدخل بياناتك لإنشاء حساب جديد.
+WITH:
+<?= __('auth.register_desc', 'Enter your details to create a new account.'); ?>
+
+REPLACE:
+الاسم (اختياري)
+WITH:
+<?= __('auth.name_optional', 'Name (optional)'); ?>
+
+REPLACE:
+اسم المستخدم (اختياري)
+WITH:
+<?= __('auth.username_optional', 'Username (optional)'); ?>
+
+REPLACE:
+البريد الإلكتروني
+WITH:
+<?= __('auth.email', 'Email'); ?>
+
+REPLACE:
+كلمة المرور
+WITH:
+<?= __('auth.password', 'Password'); ?>
+
+REPLACE:
+تأكيد كلمة المرور
+WITH:
+<?= __('auth.confirm_password', 'Confirm Password'); ?>
+
+REPLACE:
+لدي حساب
+WITH:
+<?= __('auth.have_account', 'I already have an account'); ?>
+
+FILE: frontend/views/search.php
+REPLACE:
+البحث
+WITH:
+<?= __('search.title', 'Search'); ?>
+
+REPLACE:
+نسخ رابط البحث
+WITH:
+<?= __('search.copy_link', 'Copy search link'); ?>
+
+REPLACE:
+مسح البحث
+WITH:
+<?= __('search.clear', 'Clear search'); ?>
+
+REPLACE:
+فلترة داخل الصفحة
+WITH:
+<?= __('search.in_page_filter', 'Filter within page'); ?>
+
+REPLACE:
+لا توجد نتائج مطابقة لعبارة البحث .
+WITH:
+<?= __('search.no_results', 'No results match your search query.'); ?>
+
+FILE: frontend/views/news_report.php
+REPLACE:
+نسخ الرابط
+WITH:
+<?= __('share.copy_link', 'Copy Link'); ?>
+
+REPLACE:
+مشاركة
+WITH:
+<?= __('share.share', 'Share'); ?>
+
+REPLACE:
+حفظ
+WITH:
+<?= __('share.save', 'Save'); ?>
+
+REPLACE:
+طباعة
+WITH:
+<?= __('share.print', 'Print'); ?>
+
+REPLACE:
+وضع قراءة
+WITH:
+<?= __('share.read_mode', 'Reading Mode'); ?>
+
+REPLACE:
+فيسبوك
+WITH:
+<?= __('social.facebook', 'Facebook'); ?>
+
+REPLACE:
+فهرس المحتوى
+WITH:
+<?= __('article.toc', 'Table of Contents'); ?>
+
+REPLACE:
+قفز سريع
+WITH:
+<?= __('article.quick_jump', 'Quick Jump'); ?>
+
+REPLACE:
+لا توجد عناوين داخل المحتوى لعرض فهرس.
+WITH:
+<?= __('article.no_headings', 'There are no headings in the content to display a table of contents.'); ?>

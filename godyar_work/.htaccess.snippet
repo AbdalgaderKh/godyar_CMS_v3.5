@@ -1,0 +1,17 @@
+# Godyar page/contact fallback routes
+DirectoryIndex index.php index.html
+
+RewriteEngine On
+
+# If a real file or directory exists, serve it directly
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# Fixed fallback pages
+RewriteRule ^page/about/?$ /page/about/index.php [L]
+RewriteRule ^page/privacy/?$ /page/privacy/index.php [L]
+RewriteRule ^page/terms/?$ /page/terms/index.php [L]
+RewriteRule ^page/contact/?$ /page/contact/index.php [L]
+RewriteRule ^contact/?$ /contact/index.php [L]
+RewriteRule ^contact/send\.php$ /contact/send.php [L]

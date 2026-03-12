@@ -1,0 +1,3 @@
+:root{--g-accent:#8b5cf6;--g-accent-2:#14b8a6;--g-surface:#f5f3ff;}
+.g-site-header,.g-site-footer,.g-btn,.g-badge.is-success{background:linear-gradient(135deg,var(--g-accent),var(--g-accent-2));}
+.g-card,.g-theme-card,.g-card-sub{border-color:#d8b4fe}

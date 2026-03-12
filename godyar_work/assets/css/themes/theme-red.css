@@ -1,0 +1,6 @@
+
+html.theme-red, body.theme-red{
+  --primary: #ef4444 !important;
+  --primary-dark: #b91c1c !important;
+  --primary-rgb: 239, 68, 68 !important;
+}

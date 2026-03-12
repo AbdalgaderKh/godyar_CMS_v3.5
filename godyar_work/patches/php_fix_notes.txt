@@ -1,0 +1,37 @@
+
+Godyar CMS v4.0.4 additional PHP fixes
+
+1) frontend/views/category.php
+Replace any pattern like:
+isset(gdy_tr(...))
+
+With:
+$categoryNameTranslated = gdy_tr('category', isset($category['id']) ? $category['id'] : 0, 'name', isset($category['name']) ? $category['name'] : '');
+$categoryName = ($categoryNameTranslated !== null) ? (string)$categoryNameTranslated : '';
+
+2) frontend/views/news_report.php
+Before line ~613, add:
+$updatedAt = '';
+if (isset($post) && is_array($post)) {
+    if (!empty($post['updated_at'])) {
+        $updatedAt = (string)$post['updated_at'];
+    } elseif (!empty($post['published_at'])) {
+        $updatedAt = (string)$post['published_at'];
+    } elseif (!empty($post['created_at'])) {
+        $updatedAt = (string)$post['created_at'];
+    }
+}
+$updatedAtIso = $updatedAt !== '' ? date('c', strtotime($updatedAt)) : '';
+
+if (!isset($canonical) || !is_string($canonical) || trim($canonical) === '') {
+    $canonical = isset($currentUrl) ? (string)$currentUrl : '';
+}
+
+3) Admin layout include
+Load these files in admin layout head/footer:
+admin/assets/css/admin_layout_fix.css
+admin/assets/js/admin_layout_fix.js
+
+4) includes/i18n.php
+Replace with the included file from this package.
+Save as UTF-8 without BOM.

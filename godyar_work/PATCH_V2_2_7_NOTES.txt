@@ -1,0 +1,1 @@
+Patched category rendering, safe article rendering, and lang-aware home links

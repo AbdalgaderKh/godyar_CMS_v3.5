@@ -1,0 +1,11 @@
+Godyar News Platform v3.5 Stable
+================================
+
+Key fixes in this package:
+- Unified visible version to v3.5.0-stable.
+- Added static fallback page for /page/terms.
+- Extended PageController fallback support for: about, privacy, terms, contact.
+- Added direct front controllers: /contact.php and /contact-submit.php.
+- Added router aliases for /contact, /contact.php, /contact-submit.php.
+- Fixed contact redirects to use /contact.
+- Kept installation assets ready for clean install.

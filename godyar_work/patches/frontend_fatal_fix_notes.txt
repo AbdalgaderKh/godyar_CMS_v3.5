@@ -1,0 +1,37 @@
+Godyar CMS v4.0.5 Frontend Fatal Fix Pack
+
+This pack focuses on the two repeated frontend issues seen in your logs:
+
+1) frontend/views/category.php
+Fatal:
+- Cannot use isset() on the result of an expression
+
+Fix approach:
+- Replace any pattern like:
+  isset(gdy_tr(...))
+- With:
+  require_once __DIR__ . '/../../includes/frontend_compat_fixes.php';
+  $categoryName = gdy_safe_category_name(isset($category) ? $category : array());
+
+2) frontend/views/news_report.php
+Warnings:
+- Undefined variable $updatedAt
+- strtotime(): Passing null
+- Undefined variable $canonical
+
+Fix approach:
+- Before the JSON-LD/meta block, add:
+  require_once __DIR__ . '/../../includes/frontend_compat_fixes.php';
+  $updatedAt = gdy_safe_updated_at(isset($post) ? $post : array());
+  $updatedAtIso = gdy_safe_updated_at_iso(isset($post) ? $post : array());
+  if (!isset($currentUrl)) { $currentUrl = ''; }
+  $canonical = gdy_safe_canonical(isset($canonical) ? $canonical : '', $currentUrl);
+
+Files included:
+- includes/frontend_compat_fixes.php
+- frontend/views/category_fix_example.php
+- frontend/views/news_report_fix_example.php
+
+Important:
+- Save PHP files as UTF-8 without BOM.
+- Do not place spaces before <?php.

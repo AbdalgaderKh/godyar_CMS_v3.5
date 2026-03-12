@@ -1,0 +1,19 @@
+
+
+svg.gdy-icon{
+  width: 1em;
+  height: 1em;
+  display: inline-block;
+  vertical-align: -0.125em;
+  fill: currentColor;
+}
+
+svg.gdy-icon use{ pointer-events:none; }
+
+.admin-sidebar{ transition: transform .18s ease; }
+.admin-sidebar__header{ padding: .85rem .9rem; }
+.admin-sidebar__brand{ gap: .6rem; }
+.admin-sidebar__search-wrapper{ padding: .55rem .75rem .35rem; }
+.admin-sidebar__link-card{ transition: transform .12s ease, border-color .12s ease; }
+
+body.admin-sidebar-open .admin-sidebar{ transform: translateX(0) !important; }

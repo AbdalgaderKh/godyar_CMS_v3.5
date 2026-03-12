@@ -1,0 +1,7 @@
+
+.g-hidden{display:none!important}
+.g-text-center{text-align:center}
+.g-mt-0{margin-top:0}
+.g-mb-0{margin-bottom:0}
+.g-pill{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px}
+.g-surface{background:#fff;border:1px solid var(--g-border);box-shadow:var(--g-shadow);border-radius:18px}

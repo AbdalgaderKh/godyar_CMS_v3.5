@@ -1,0 +1,53 @@
+
+
+.gdy-footer ul, .gdy-footer ol,
+footer ul, footer ol,
+.footer ul, .footer ol {
+  list-style: none !important;
+  margin: 0;
+  padding: 0;
+}
+
+.gdy-footer li::marker,
+footer li::marker,
+.footer li::marker {
+  content: "" !important;
+}
+
+.gdy-footer li::before,
+footer li::before,
+.footer li::before {
+  
+  content: none !important;
+}
+
+.gdy-footer .social, .gdy-footer .social-links, .gdy-footer .footer-social,
+footer .social, footer .social-links, footer .footer-social,
+.footer .social, .footer .social-links, .footer .footer-social {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+}
+
+.gdy-footer .social a, .gdy-footer .social-links a, .gdy-footer .footer-social a,
+footer .social a, footer .social-links a, footer .footer-social a,
+.footer .social a, .footer .social-links a, .footer .footer-social a {
+  text-decoration: none;
+}
+
+.gdy-footer .social a, footer .social a, .footer .social a {
+  line-height: 1;
+}
+
+.gdy-footer .footer-links li::after,
+footer .footer-links li::after,
+.footer .footer-links li::after {
+  content: none !important;
+}
+
+html[dir="rtl"] .gdy-footer ul, html[dir="rtl"] footer ul, html[dir="rtl"] .footer ul {
+  padding-right: 0;
+  padding-left: 0;
+}

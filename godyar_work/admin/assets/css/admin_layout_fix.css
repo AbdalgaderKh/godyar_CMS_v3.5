@@ -1,0 +1,46 @@
+
+
+@media (min-width: 992px) {
+  .sidebar,
+  .admin-sidebar,
+  .app-sidebar,
+  aside.sidebar,
+  aside.admin-sidebar {
+    width: 280px !important;
+    min-width: 280px !important;
+  }
+
+  body.sidebar-collapsed .sidebar,
+  body.sidebar-mini .sidebar,
+  body.compact-sidebar .sidebar,
+  body.menu-collapsed .sidebar,
+  .sidebar.is-collapsed,
+  .admin-sidebar.is-collapsed {
+    width: 280px !important;
+    min-width: 280px !important;
+  }
+
+  .sidebar .menu-text,
+  .sidebar .nav-text,
+  .sidebar .item-text,
+  .sidebar .label,
+  .sidebar .title,
+  .admin-sidebar .menu-text,
+  .admin-sidebar .nav-text,
+  .admin-sidebar .item-text,
+  .admin-sidebar .label,
+  .admin-sidebar .title {
+    display: inline !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    width: auto !important;
+    max-width: none !important;
+    overflow: visible !important;
+  }
+}
+
+html[dir="ltr"] body.admin,
+body.admin,
+body[class*="admin"] {
+  direction: rtl;
+}

@@ -1,0 +1,18 @@
+
+body[data-theme="dark"]{
+  --g-bg:#0f172a;
+  --g-card:#111827;
+  --g-text:#e5e7eb;
+  --g-muted:#94a3b8;
+  --g-primary:#2dd4bf;
+  --g-border:#243244;
+  --g-shadow:0 14px 40px rgba(2,6,23,.35);
+}
+body[data-theme="dark"] .g-v4-header,
+body[data-theme="dark"] .g-v4-footer,
+body[data-theme="dark"] .g-v4-theme-toggle,
+body[data-theme="dark"] .g-v4-nav a:hover,
+body[data-theme="dark"] .g-v4-footer-links a:hover,
+body[data-theme="dark"] .g-v4-share a,
+body[data-theme="dark"] .g-v4-shortcuts a{background:#111827;color:var(--g-text)}
+body[data-theme="dark"] .g-v4-breaking{background:#7f1d1d}

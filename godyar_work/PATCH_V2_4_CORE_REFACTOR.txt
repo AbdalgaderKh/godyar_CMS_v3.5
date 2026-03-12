@@ -1,0 +1,10 @@
+Godyar CMS v2.4 Core Refactor
+
+Applied changes:
+- Added includes/core_refactor.php for central language-aware URL + shared view helpers.
+- Bootstrapped core_refactor from includes/bootstrap.php.
+- Added verify_csrf_token() compatibility alias.
+- Improved FrontendRenderer to normalize metadata, shared view data and plugin filters.
+- Updated includes/plugins.php to resolve plugin directory centrally and expose g_plugins/g_do_hook/g_apply_filters.
+- Updated NewsController and CategoryController to use centralized language/url helpers.
+- Kept changes intentionally conservative to avoid breaking legacy paths.

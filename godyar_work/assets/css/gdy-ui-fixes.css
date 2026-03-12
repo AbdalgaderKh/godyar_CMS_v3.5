@@ -1,0 +1,174 @@
+
+
+.site-header{
+  position: sticky;
+  top: 0;
+  z-index: 1200;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  background: var(--header-bg) !important;
+  border-bottom: 1px solid rgba(0,0,0,.06);
+}
+.site-header .brand-title{
+  color: rgb(var(--primary-rgb)) !important;
+  font-weight: 800;
+  letter-spacing: .2px;
+}
+.site-header .header-secondary{
+  border-top: 1px solid rgba(0,0,0,.05);
+}
+
+.cats-link, .cats-toggle{
+  border-radius: 999px;
+}
+.cats-link{
+  padding: 10px 14px;
+}
+.cats-link:hover{
+  background: rgba(var(--primary-rgb), .08);
+}
+
+.hdr-utils{ gap:10px; }
+.hdr-dd-btn{
+  height:40px;
+  min-height:40px;
+  padding:0 12px;
+  border-radius:999px;
+  border:1px solid rgba(0,0,0,.10);
+  background: rgba(255,255,255,.70);
+  box-shadow: 0 6px 16px rgba(0,0,0,.06);
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+}
+.hdr-dd-btn:hover{ background: rgba(255,255,255,.92); }
+.hdr-dd-btn .gdy-icon{ width:18px; height:18px; }
+.hdr-dd-btn:focus{ outline: 2px solid rgba(var(--primary-rgb), .35); outline-offset: 2px; }
+
+.hdr-dd-menu{
+  border-radius:16px;
+  box-shadow: 0 18px 40px rgba(0,0,0,.12);
+  border:1px solid rgba(0,0,0,.10);
+  background: rgba(255,255,255,.98);
+}
+
+.header-secondary-inner{
+  gap: 14px;
+  align-items: center;
+}
+
+@media (min-width: 992px){
+  .header-search{
+    flex: 0 0 280px;
+    max-width: 280px;
+    width: 280px;
+    margin-inline-start: 10px;
+  }
+  html[dir="rtl"] .header-search{ margin-inline-start: 0; margin-inline-end: 10px; }
+}
+
+@media (max-width: 991.98px){
+  .header-search{
+    max-width: 100%;
+    width: 100%;
+  }
+}
+
+.header-search input[type="search"]{
+  width: 100%;
+  height:44px;
+  padding: 10px 44px 10px 14px;
+  border-radius: 999px;
+  border:1px solid rgba(0,0,0,.10);
+  background: rgba(255,255,255,.75);
+}
+html[dir="rtl"] .header-search input[type="search"]{
+  padding: 10px 14px 10px 44px;
+}
+
+.gdy-footer, .site-footer, footer.gdy-footer{
+  background: var(--footer-bg) !important;
+  color: var(--footer-text, var(--text-main)) !important;
+  border-top: 1px solid rgba(var(--primary-rgb), .14);
+}
+.gdy-footer .gdy-footer-card{
+  border: 1px solid rgba(var(--primary-rgb), .12);
+  background: rgba(255,255,255,.35);
+  border-radius: 18px;
+}
+.gdy-footer h4{
+  color: var(--text-main);
+}
+.gdy-footer a{
+  color: var(--text-main);
+}
+.gdy-footer a:hover{
+  color: rgb(var(--primary-rgb));
+}
+
+.gdy-social{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+}
+.gdy-social a{
+  width:42px;
+  height:42px;
+  border-radius:14px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  border:1px solid rgba(0,0,0,.10);
+  background: rgba(255,255,255,.75);
+}
+.gdy-social a:hover{ background: rgba(255,255,255,.95); }
+.gdy-social .gdy-icon{ width:18px; height:18px; }
+
+#gdy-push-toast{ z-index: 9999; pointer-events:auto; }
+#gdy-push-toast.hidden{ display:none !important; }
+
+html[data-theme="dark"]{
+  color-scheme: dark;
+  --page-bg: #0b1220;
+  --surface: rgba(15,23,42,.92);
+  --surface-2: rgba(15,23,42,.70);
+  --text-main: rgba(226,232,240,.94);
+  --text-muted: rgba(226,232,240,.70);
+  --border: rgba(255,255,255,.10);
+  --border-strong: rgba(255,255,255,.16);
+  --header-bg: linear-gradient(180deg, rgba(var(--primary-rgb), .22), rgba(15,23,42,.86));
+  --footer-bg: linear-gradient(180deg, rgba(var(--primary-rgb), .18), rgba(15,23,42,.82));
+  --footer-text: rgba(226,232,240,.94);
+}
+
+html[data-theme="dark"] body{
+  background: var(--page-bg);
+  color: var(--text-main);
+}
+
+html[data-theme="dark"] .hdr-dd-btn{
+  border-color: rgba(255,255,255,.14);
+  background: rgba(15,23,42,.55);
+  color: rgba(226,232,240,.92);
+}
+html[data-theme="dark"] .hdr-dd-menu{
+  background: rgba(15,23,42,.96);
+  border-color: rgba(255,255,255,.10);
+}
+html[data-theme="dark"] .header-search input[type="search"]{
+  border-color: rgba(255,255,255,.14);
+  background: rgba(15,23,42,.55);
+  color: rgba(226,232,240,.92);
+}
+
+html[data-theme="dark"] .gdy-footer .gdy-footer-card{
+  background: rgba(15,23,42,.45);
+  border-color: rgba(255,255,255,.10);
+}
+html[data-theme="dark"] .gdy-social a{
+  border-color: rgba(255,255,255,.14);
+  background: rgba(15,23,42,.55);
+}
+html[data-theme="dark"] .gdy-social a:hover{
+  background: rgba(15,23,42,.72);
+}

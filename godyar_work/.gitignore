@@ -1,0 +1,51 @@
+# Environment / secrets
+.env
+.env.*
+!.env.example
+!.env.v38.example
+config.php
+install.lock
+
+# Runtime / generated data
+/cache/
+/storage/*
+!/storage/.gitignore
+!/storage/.htaccess
+!/storage/index.html
+!/storage/theme.json
+!/storage/site_branding.php
+/uploads/
+/error_log
+/admin/error_log
+/admin/contact/error_log
+/admin/system/error_log
+
+# Dependencies
+/vendor/
+/node_modules/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Build / temp
+*.log
+*.tmp
+*.bak
+*.swp
+composer.lock
+
+# Sensitive dumps / secrets
+*.sql
+*.sql.gz
+*.backup
+*.dump
+*.pem
+*.key
+*.p12
+*.crt
+*.pfx
+/storage/sessions/*
+/storage/revisions/*

@@ -1,0 +1,18 @@
+
+#gdyReadProgress{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  z-index: 9999;
+  background: rgba(0,0,0,.06);
+}
+html[data-theme="dark"] #gdyReadProgress{ background: rgba(255,255,255,.08); }
+#gdyReadProgress > span{
+  display:block;
+  height:100%;
+  width: 0%;
+  background: rgb(var(--primary-rgb));
+  transition: width .08s linear;
+}

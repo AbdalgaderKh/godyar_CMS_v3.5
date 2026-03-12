@@ -1,0 +1,14 @@
+Godyar CMS v2.2 PRO patched by automated inspection.
+
+Applied changes:
+- Hardened base_url/site_url/admin_url helpers with APP_URL awareness and /admin stripping.
+- Added admin HTML output normalizer to auto-fix duplicated admin route fragments in href/action/src.
+- Fixed category page compatibility with items/news/newsItems/currentPage/pages variable names.
+- Reworked CategoryService query strategy to support category_id OR category_slug OR category columns and broader publish filters.
+- Added duplicate-admin canonicalization rules to root .htaccess.
+- Sanitized .env files for safe sharing.
+- Removed backup/log/report/generated sensitive files.
+
+Important:
+- Keep your real production .env on the server. Do not overwrite it with the sanitized .env from this archive.
+- Review existing duplicate rows before executing UNIQUE indexes from the migration file.

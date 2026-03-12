@@ -1,0 +1,7 @@
+
+:root{color-scheme:light;}
+html,body{background:#f6f7fb;color:#0b1220;}
+html[data-theme="dark"],body[data-theme="dark"]{background:#f6f7fb !important;color:#0b1220 !important;}
+
+.navbar,.topbar,.header{background:transparent;}
+.card{background:#fff;}

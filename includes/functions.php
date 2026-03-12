@@ -877,6 +877,34 @@ if (function_exists('gdy_get_query_int') !== true) {
     }
 }
 
+
+
+if (function_exists('gdy_get_post_raw') !== true) {
+    function gdy_get_post_raw(string $key, $default = '') {
+        $v = filter_input(INPUT_POST, $key, FILTER_UNSAFE_RAW, FILTER_NULL_ON_FAILURE);
+        if ($v === null) {
+            return $default;
+        }
+        return gdy_unslash($v);
+    }
+}
+
+if (function_exists('gdy_get_uploaded_file') !== true) {
+    function gdy_get_uploaded_file(string $key): ?array {
+        if (!isset($_FILES[$key]) || is_array($_FILES[$key]) !== true) {
+            return null;
+        }
+        $file = $_FILES[$key];
+        $out = [];
+        foreach (['name', 'type', 'tmp_name'] as $field) {
+            $out[$field] = isset($file[$field]) ? (string) gdy_unslash((string) $file[$field]) : '';
+        }
+        $out['error'] = isset($file['error']) ? (int) $file['error'] : UPLOAD_ERR_NO_FILE;
+        $out['size'] = isset($file['size']) ? (int) $file['size'] : 0;
+        return $out;
+    }
+}
+
 if (function_exists('gdy_get_server_raw') !== true) {
     function gdy_get_server_raw(string $key, $default = '') {
         $v = filter_input(INPUT_SERVER, $key, FILTER_UNSAFE_RAW, FILTER_NULL_ON_FAILURE);

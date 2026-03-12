@@ -1,0 +1,13 @@
+
+.gdy-admin-footer,
+.gdy-admin-footer * {
+  color: rgba(226, 232, 240, .92) !important;
+}
+.gdy-admin-footer__muted,
+.gdy-admin-footer__left .gdy-admin-footer__muted{
+  color: rgba(148, 163, 184, .88) !important;
+}
+.gdy-admin-badge{
+  color: rgba(226, 232, 240, .92) !important;
+  border-color: rgba(148, 163, 184, .26) !important;
+}

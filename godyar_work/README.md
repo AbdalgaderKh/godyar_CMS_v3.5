@@ -1,0 +1,31 @@
+
+نظام إدارة محتوى (CMS) مبني بـ PHP مع لوحة تحكم وإدارة أخبار/تصنيفات/وسائط.
+
+- PHP 8.1+ (يعمل على 7.4+ في بعض البيئات، لكن الموصى به 8.1+)
+- MySQL/MariaDB 10.3+ (أو MySQL 5.7+)
+- Extensions: PDO MySQL, mbstring, json, curl, gd, zip
+- تفعيل `mod_rewrite` (Apache) أو إعدادات rewriting في Nginx
+
+1. ارفع الملفات إلى مجلد الموقع.
+2. أنشئ قاعدة بيانات جديدة (يفضل اسمًا مثل `example_myar` أو أي اسم تختاره).
+3. افتح في المتصفح: `https://your-domain.com/install.php`
+4. أكمل المعالج (إعداد قاعدة البيانات + إنشاء حساب المدير).
+5. بعد النجاح:
+   - سيتم إنشاء ملف `.env`
+   - سيتم إنشاء ملف `install.lock`
+   - احذف `install.php` ومجلد `install/` لأسباب أمنية (أو اتركهما مع وجود `install.lock`).
+
+- يفضل استخدام Composer: `composer install`
+- اجعل `APP_ENV=local` و `APP_DEBUG=true` داخل `.env` في بيئة التطوير.
+
+- لا ترفع ملف `.env` إلى GitHub (تم إضافته في `.gitignore`).
+- لا تترك `install.php` متاحًا بعد التثبيت.
+- استخدم كلمة مرور قوية لحساب المدير.
+
+يرجى قراءة `SECURITY.md`.
+
+- الموقع: `example.com`
+- البريد: `maintainer@example.com`
+- الهاتف/واتساب: `+000000000000` / `+000000000001`
+
+MIT

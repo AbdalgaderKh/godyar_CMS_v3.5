@@ -1,0 +1,11 @@
+# Godyar CMS v4 legacy redirects bootstrap
+RewriteCond %{REQUEST_URI} ^/(home\.php|index\.php)$ [NC]
+RewriteRule ^.*$ / [R=301,L]
+
+RewriteCond %{REQUEST_URI} ^/page/contact/?$ [NC,OR]
+RewriteCond %{REQUEST_URI} ^/contact/index\.php$ [NC,OR]
+RewriteCond %{REQUEST_URI} ^/contact-submit\.php$ [NC]
+RewriteRule ^.*$ /contact [R=301,L]
+
+RewriteCond %{THE_REQUEST} \s/+category\.php\?slug=([^\s&]+) [NC]
+RewriteRule ^category\.php$ /category/%1 [R=301,L,NE]

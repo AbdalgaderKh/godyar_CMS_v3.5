@@ -1,0 +1,15 @@
+Godyar News Platform v3.5 clean distribution
+
+Applied changes:
+- Unified visible version to v3.5.0-stable
+- Rebranded key installer/admin version strings to Godyar News Platform
+- Removed .env from distribution and generated sanitized .env.example
+- Removed install.lock to allow fresh installation
+- Reset storage/site_branding.php to empty safe defaults
+- Included V3 README blueprint starter
+- Cleaned obvious runtime log artifacts
+- Retained current application codebase as install-ready base
+
+Important:
+- This package is a cleaned install-ready distribution of the current codebase.
+- It does not magically implement every proposed future V3 feature from the blueprint. Those remain roadmap items.

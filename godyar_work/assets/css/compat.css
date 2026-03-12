@@ -1,0 +1,23 @@
+
+
+.hm-featured-play{
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
+
+.site-header{
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+
+.cats-nav,
+.hm-featured-thumbs{
+  -ms-overflow-style: none;   
+}
+
+.cats-nav::-webkit-scrollbar,
+.hm-featured-thumbs::-webkit-scrollbar{
+  width: 0;
+  height: 0;
+  display: none;
+}

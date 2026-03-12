@@ -1,0 +1,15 @@
+# -----------------------------------------
+# Godyar v3.5 static pages patch
+# أضف هذا قبل RewriteRule ^ app.php [L,QSA]
+# -----------------------------------------
+RewriteRule ^(?:ar|en|fr)/page/about/?$ app.php [L,NC,QSA]
+RewriteRule ^(?:ar|en|fr)/page/privacy/?$ app.php [L,NC,QSA]
+RewriteRule ^(?:ar|en|fr)/page/terms/?$ app.php [L,NC,QSA]
+RewriteRule ^(?:ar|en|fr)/page/contact/?$ app.php [L,NC,QSA]
+RewriteRule ^(?:ar|en|fr)/contact/?$ app.php [L,NC,QSA]
+
+RewriteRule ^page/about/?$ app.php [L,NC,QSA]
+RewriteRule ^page/privacy/?$ app.php [L,NC,QSA]
+RewriteRule ^page/terms/?$ app.php [L,NC,QSA]
+RewriteRule ^page/contact/?$ app.php [L,NC,QSA]
+RewriteRule ^contact/?$ app.php [L,NC,QSA]

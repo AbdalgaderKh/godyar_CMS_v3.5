@@ -1,28 +1,27 @@
 <?php
 
-if (!defined('GDY_ADMIN_BOOT')) {
+if (defined('GDY_ADMIN_BOOT') !== true) {
   header('Location: index.php?tab=theme');
   exit;
 }
 
-if (!function_exists('h')) {
+if (function_exists('h') !== true) {
   function h($s){ return htmlspecialchars((string)$s, ENT_QUOTES, 'UTF-8'); }
 }
 
 $__gdy_root = null;
-if (defined('GODYAR_ROOT') && is_dir(GODYAR_ROOT)) {
-  $__gdy_root = rtrim(GODYAR_ROOT, '/');
+if (defined('GODYAR_ROOT') === true && is_dir(GODYAR_ROOT) === true) {
+  $__gdy_root = rtrim((string) GODYAR_ROOT, '/');
 } else {
-  
-  $__gdy_root = realpath(__DIR__ . '/../../');
-  $__gdy_root = $__gdy_root ? rtrim(str_replace('\\','/',$__gdy_root), '/') : null;
+  $__resolved_root = realpath(__DIR__ . '/../../');
+  $__gdy_root = is_string($__resolved_root) === true ? rtrim(str_replace('\\', '/', $__resolved_root), '/') : null;
 }
 $__cfg_file = ($__gdy_root ? $__gdy_root . '/storage/config/site_theme.php' : null);
 
 $themes_dir = ($__gdy_root ? $__gdy_root . '/assets/css/themes' : null);
 $themes = [];
-if ($themes_dir && is_dir($themes_dir)) {
-  foreach (glob($themes_dir . '/theme-*.css') as $f) {
+if ($themes_dir !== null && is_dir($themes_dir) === true) {
+  foreach (glob($themes_dir . '/theme-*.css') ?: [] as $f) {
     $rel = 'assets/css/themes/' . basename($f);
     $themes[] = $rel;
   }
@@ -30,62 +29,61 @@ if ($themes_dir && is_dir($themes_dir)) {
 sort($themes);
 
 $__current = null;
-if (function_exists('site_settings_get')) {
+if (function_exists('site_settings_get') === true) {
   $__current = site_settings_get('frontend_theme', null);
-  if (!$__current) $__current = site_settings_get('front_theme', null);
-  if (!$__current) $__current = site_settings_get('site_theme', null);
-  if (!$__current) {
+  if ((string) $__current === '') $__current = site_settings_get('front_theme', null);
+  if ((string) $__current === '') $__current = site_settings_get('site_theme', null);
+  if ((string) $__current === '') {
     $preset = site_settings_get('front_preset', null);
-    if ($preset) $__current = (strpos($preset, 'theme-') === 0) ? "assets/css/themes/{$preset}.css" : "assets/css/themes/theme-{$preset}.css";
+    if ((string) $preset !== '') $__current = (strpos((string) $preset, 'theme-') === 0) ? "assets/css/themes/{$preset}.css" : "assets/css/themes/theme-{$preset}.css";
   }
 }
-if (!$__current && $__cfg_file && is_file($__cfg_file)) {
-  $__current = @include $__cfg_file;
+if ((string) $__current === '' && $__cfg_file !== null && file_exists($__cfg_file) === true) {
+  $__current = include $__cfg_file;
 }
-if (!$__current) $__current = 'assets/css/themes/theme-blue.css';
+if ((string) $__current === '') $__current = 'assets/css/themes/theme-blue.css';
 
-if ($themes && !in_array($__current, $themes, true)) {
-  
+if ($themes !== [] && in_array($__current, $themes, true) !== true) {
   $tmp = (string)$__current;
   $tmp = preg_replace('~^https?://[^/]+/~i', '', $tmp);
-  $tmp = ltrim($tmp, '/');
-  if (in_array($tmp, $themes, true)) $__current = $tmp;
+  $tmp = ltrim((string) $tmp, '/');
+  if (in_array($tmp, $themes, true) === true) $__current = $tmp;
 }
 
 $flash_ok = false;
 $flash_err = null;
+$requestMethod = function_exists('gdy_get_server_raw') === true ? (string) gdy_get_server_raw('REQUEST_METHOD', 'GET') : 'GET';
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-  $sel = isset($_POST['site_theme']) ? trim((string)$_POST['site_theme']) : '';
-  
-  if ($sel === '' && isset($_POST['frontend_theme'])) $sel = trim((string)$_POST['frontend_theme']);
-  if ($sel === '' && isset($_POST['front_theme'])) $sel = trim((string)$_POST['front_theme']);
+if ($requestMethod === 'POST') {
+  $sel = function_exists('gdy_get_post_raw') === true ? trim((string) gdy_get_post_raw('site_theme', '')) : '';
+  if ($sel === '') $sel = function_exists('gdy_get_post_raw') === true ? trim((string) gdy_get_post_raw('frontend_theme', '')) : '';
+  if ($sel === '') $sel = function_exists('gdy_get_post_raw') === true ? trim((string) gdy_get_post_raw('front_theme', '')) : '';
 
-  
   $sel = preg_replace('~^https?://[^/]+/~i', '', $sel);
-  $sel = ltrim($sel, '/');
+  $sel = ltrim((string) $sel, '/');
 
-  if ($themes && !in_array($sel, $themes, true)) {
+  if ($themes !== [] && in_array($sel, $themes, true) !== true) {
     $flash_err = 'الثيم المحدد غير صالح.';
   } else {
-    
-    if (function_exists('site_settings_set') && isset($pdo) && $pdo) {
+    if (function_exists('site_settings_set') === true && isset($pdo) && $pdo) {
       site_settings_set($pdo, 'site_theme', $sel);
       site_settings_set($pdo, 'front_theme', $sel);
       site_settings_set($pdo, 'frontend_theme', $sel);
 
-      
       $slug = 'blue';
-      if (preg_match('~theme-([a-z0-9_-]+)\.css$~i', $sel, $m)) $slug = strtolower($m[1]);
+      if (preg_match('~theme-([a-z0-9_-]+)\.css$~i', $sel, $m) === 1) $slug = strtolower((string) $m[1]);
       site_settings_set($pdo, 'front_preset', $slug);
     }
 
-    
-    if ($__cfg_file) {
-      $dir = dirname($__cfg_file);
-      if (!is_dir($dir)) @mkdir($dir, 0775, true);
+    if ($__cfg_file !== null) {
+      $__cfg_dir = str_replace('\\', '/', (string) dirname($__cfg_file));
+      if (function_exists('gdy_mkdir') === true) {
+        gdy_mkdir($__cfg_dir, 0755, true);
+      }
       $php = "<?php\n// Auto-generated by Admin > Settings > Theme\nreturn '" . addslashes($sel) . "';\n";
-      @file_put_contents($__cfg_file, $php, LOCK_EX);
+      if (function_exists('gdy_file_put_contents') === true) {
+        gdy_file_put_contents($__cfg_file, $php, LOCK_EX);
+      }
     }
 
     $__current = $sel;
@@ -109,7 +107,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <div class="card" style="max-width:980px;background:var(--gdy-surface-2);border:1px solid var(--gdy-border);">
     <div class="card-body">
       <form method="post" action="">
-        <?php if (function_exists('csrf_field')) { echo csrf_field(); } ?>
+        <?php if (function_exists('csrf_field') === true) { echo csrf_field(); } ?>
 
         <div class="mb-3">
           <label class="form-label">الثيم الحالي</label>
@@ -122,7 +120,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="mb-3">
           <label class="form-label">قائمة الثيمات المتاحة</label>
 
-          <?php if (!$themes): ?>
+          <?php if ($themes === []): ?>
             <div class="text-danger">لم يتم العثور على أي ثيمات داخل <code>/assets/css/themes</code></div>
           <?php else: ?>
             <div class="row g-2">
@@ -136,7 +134,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <div class="p-3" style="border:1px solid var(--gdy-border);border-radius:14px;background:rgba(2,6,23,.35);display:flex;gap:10px;align-items:flex-start;">
                       <input id="<?php echo h($id); ?>" class="form-check-input" type="radio" name="site_theme" value="<?php echo h($t); ?>" style="margin-top:4px;" <?php echo $checked; ?>>
                       <div style="min-width:0;">
-                        <div style="font-weight:800;"><?php echo h($name); ?></div>
+                        <div style="font-weight:800;"><?php echo h((string) $name); ?></div>
                         <div class="text-muted" style="font-size:.85rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;"><?php echo h($t); ?></div>
                       </div>
                     </div>

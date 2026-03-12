@@ -1,0 +1,10 @@
+:root{
+  --primary:#8b6b1f;
+  --primary-dark:#5f4813;
+  --primary-rgb:139,107,31;
+}
+html[data-theme="dark"], body.theme-dark{
+  --surface:#0f1117;
+  --surface-2:#171a22;
+  --page-bg:#0a0c12;
+}
