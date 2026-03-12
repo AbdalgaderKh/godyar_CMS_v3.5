@@ -128,7 +128,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="row g-2">
               <?php foreach ($themes as $t):
                 $checked = ($t === $__current) ? 'checked' : '';
-                $id = 'theme_' . md5($t);
+                $id = 'theme_' . substr(hash('sha256', $t), 0, 16);
                 $name = preg_replace('~^assets/css/themes/(theme-[^\.]+)\.css$~', '$1', $t);
               ?>
                 <div class="col-12 col-md-6">

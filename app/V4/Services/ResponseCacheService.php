@@ -40,7 +40,7 @@ final class ResponseCacheService
 
     private function fileFor(string $key): string
     {
-        return godyar_v4_storage_path('cache/v4/' . md5($key) . '.html');
+        return godyar_v4_storage_path('cache/v4/' . hash('sha256', $key) . '.html');
     }
 
     private function contentOf(Response $response): string

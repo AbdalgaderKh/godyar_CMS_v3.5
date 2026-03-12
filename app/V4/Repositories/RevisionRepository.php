@@ -84,7 +84,7 @@ final class RevisionRepository
     private function normalize(array $row): array
     {
         return [
-            'id' => (string)($row['id'] ?? uniqid('rev_', true)),
+            'id' => (string)($row['id'] ?? ('rev_' . substr(hash('sha256', microtime(true) . '|' . getmypid() . '|' . json_encode($row)), 0, 24))),
             'title' => (string)($row['title'] ?? ''),
             'excerpt' => (string)($row['excerpt'] ?? ''),
             'summary' => (string)($row['summary'] ?? ''),

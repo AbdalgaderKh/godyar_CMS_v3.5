@@ -261,7 +261,16 @@ if (!function_exists('generate_csrf_token')) {
             try {
                 $_SESSION['_csrf_token'] = bin2hex(random_bytes(32));
             } catch (Throwable $e) {
-                $_SESSION['_csrf_token'] = hash('sha256', uniqid((string)mt_rand(), true));
+                if (function_exists('openssl_random_pseudo_bytes')) {
+                    $fallback = openssl_random_pseudo_bytes(32);
+                    if ($fallback !== false) {
+                        $_SESSION['_csrf_token'] = bin2hex($fallback);
+                    } else {
+                        $_SESSION['_csrf_token'] = bin2hex(hash('sha256', microtime(true) . '|' . getmypid() . '|' . session_id(), true));
+                    }
+                } else {
+                    $_SESSION['_csrf_token'] = bin2hex(hash('sha256', microtime(true) . '|' . getmypid() . '|' . session_id(), true));
+                }
             }
         }
 

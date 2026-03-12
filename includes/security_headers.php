@@ -10,8 +10,16 @@ function gdy_apply_security_headers(): void
         try {
             $nonce = base64_encode(random_bytes(16));
         } catch (Throwable $e) {
-            
-            $nonce = base64_encode((string)microtime(true) . '|' . (string)mt_rand());
+            if (function_exists('openssl_random_pseudo_bytes')) {
+                $fallback = openssl_random_pseudo_bytes(16);
+                if ($fallback !== false) {
+                    $nonce = base64_encode($fallback);
+                } else {
+                    $nonce = base64_encode(hash('sha256', microtime(true) . '|' . getmypid() . '|' . memory_get_usage(), true));
+                }
+            } else {
+                $nonce = base64_encode(hash('sha256', microtime(true) . '|' . getmypid() . '|' . memory_get_usage(), true));
+            }
         }
         define('GDY_CSP_NONCE', $nonce);
     }

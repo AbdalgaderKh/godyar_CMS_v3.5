@@ -729,7 +729,7 @@ if (!function_exists('gdy_cache_key')) {
     function gdy_cache_key(string $prefix, array $parts): string
     {
         $raw = $prefix . '|' . json_encode($parts, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
-        return $prefix . ':' . sha1((string)$raw);
+        return $prefix . ':' . hash('sha256', (string)$raw);
     }
 }
 
@@ -800,7 +800,7 @@ if (function_exists('gdy_page_cache_key') === false) {
     function gdy_page_cache_key(string $prefix, array $parts = []): string {
         $host = (string)($_SERVER['HTTP_HOST'] ?? 'host');
         $base = $prefix . '|' . $host . '|' . implode('|', array_map('strval', $parts));
-        return substr(sha1($base), 0, 24);
+        return substr(hash('sha256', $base), 0, 24);
     }
 }
 
