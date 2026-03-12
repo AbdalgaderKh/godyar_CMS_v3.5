@@ -1,0 +1,43 @@
+parameters:
+  level: 2
+  paths:
+    - admin
+    - app
+    - includes
+    - src
+    - frontend/controllers
+    - install.php
+    - index.php
+    - login.php
+    - logout.php
+    - register.php
+    - track_visit.php
+  bootstrapFiles:
+    - includes/functions.php
+  tmpDir: storage/cache/phpstan
+  scanDirectories:
+    - includes/classes
+    - src
+    - app/V4
+  excludePaths:
+    analyse:
+      - */vendor/*
+      - */node_modules/*
+      - */storage/*
+      - */cache/*
+      - */logs/*
+      - */tmp/*
+      - */backup/*
+      - */uploads/*
+      - */docs/*
+      - */work/*
+      - */godyar_work/*
+      - */patches/*
+      - */legacy/*
+      - */themes/*
+      - */frontend/views/*
+      - */admin/views/*
+      - */assets/js/*
+      - */admin/assets/js/*
+  treatPhpDocTypesAsCertain: false
+  reportUnmatchedIgnoredErrors: false

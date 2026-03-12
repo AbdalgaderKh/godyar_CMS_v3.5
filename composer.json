@@ -22,7 +22,10 @@
     "cs": "php-cs-fixer fix --diff --ansi",
     "stan": "phpstan analyse --ansi",
     "psalm": "psalm --show-info=true",
-    "test": "phpunit"
+    "test": "phpunit",
+    "lint:all": "find . -name '*.php' -not -path './vendor/*' -print0 | xargs -0 -n1 php -l",
+    "phpcs": "phpcs --standard=.phpcs.xml.dist",
+    "phpstan": "phpstan analyse -c phpstan.neon.dist --ansi"
   },
   "description": "Godyar CMS - نظام إدارة محتوى للأخبار (News CMS)",
   "license": "MIT",

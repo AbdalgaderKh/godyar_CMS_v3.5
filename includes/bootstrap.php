@@ -15,6 +15,8 @@ $__safe = __DIR__ . '/safe_runtime.php';
 if (is_file($__safe)) { require_once $__safe; }
 $__fs = __DIR__ . '/fs.php';
 if (is_file($__fs)) { require_once $__fs; }
+$__functions = __DIR__ . '/functions.php';
+if (is_file($__functions)) { require_once $__functions; }
 $__logger = __DIR__ . '/logger.php';
 if (is_file($__logger)) { require_once $__logger; if (function_exists('gdy_register_error_handlers')) { gdy_register_error_handlers(); } }
 
