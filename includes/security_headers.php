@@ -18,31 +18,41 @@ function gdy_apply_security_headers(): void
         define('GDY_CSP_NONCE', $nonce);
     }
 
-    $serverVar = static function (string $key, string $default = ''): string {
-        if (isset($_SERVER[$key]) === true) {
-            return (string) $_SERVER[$key];
+    $env = static function (string $name, string $default = ''): string {
+        if (function_exists('gdy_env') === true) {
+            return (string) gdy_env($name, $default);
         }
+
         return $default;
     };
 
-    $env = static function (string $name): string {
-        $value = $_ENV[$name] ?? $_SERVER[$name] ?? null;
-
-        if ($value === null) {
-            return '';
+    $serverVar = static function (string $key, string $default = ''): string {
+        if (function_exists('gdy_server_var') === true) {
+            return (string) gdy_server_var($key, $default);
         }
 
-        return trim((string) $value);
+        return $default;
     };
 
     $sendHeader = static function (string $value): void {
-        if ($value !== '') {
-            header($value);
+        if ($value === '') {
+            return;
+        }
+
+        if (function_exists('gdy_header') === true) {
+            gdy_header($value);
+            return;
         }
     };
 
     $headerList = static function (): array {
-        return function_exists('headers_list') === true ? headers_list() : [];
+        if (function_exists('gdy_headers_list') === true) {
+            $headers = gdy_headers_list();
+
+            return is_array($headers) === true ? $headers : [];
+        }
+
+        return [];
     };
 
     if ($env('GDY_SECURITY_HEADERS') === '0') {
@@ -100,11 +110,11 @@ function gdy_apply_security_headers(): void
     }
 
     foreach ($headerList() as $existingHeader) {
-        if (stripos($existingHeader, 'Content-Security-Policy:') === 0) {
+        if (stripos((string) $existingHeader, 'Content-Security-Policy:') === 0) {
             return;
         }
 
-        if (stripos($existingHeader, 'Content-Security-Policy-Report-Only:') === 0) {
+        if (stripos((string) $existingHeader, 'Content-Security-Policy-Report-Only:') === 0) {
             return;
         }
     }
