@@ -611,14 +611,15 @@ input:checked + .slider:before {
     <div class = "gdy-filter-bar">
         <form method = "get" class = "row g-3 align-items-end">
             <div class = "col-12 col-md-3">
-                <label style = "color: 
-                <input type = "text" name = "search" 
-                       value = "<?php echo h($search); ? class="form-label small mb-1 form-control bg-dark text-light border-secondary">" 
+                <label class = "form-label small mb-1 text-light"><?php echo h(__('t_88e1b31a27', 'ابحث في العناوين...')); ?></label>
+                <input type = "text" name = "search"
+                       value = "<?php echo h($search); ?>"
+                       class = "form-control bg-dark text-light border-secondary"
                        placeholder = "<?php echo h(__('t_88e1b31a27', 'ابحث في العناوين...')); ?>">
             </div>
             <div class = "col-12 col-md-3">
-                <label style = "color: 
-                <select name = "status" class="form-label small mb-1 form-select bg-dark text-light border-secondary">
+                <label class = "form-label small mb-1 text-light"><?php echo h(__('t_a4028d028a', 'جميع الحالات')); ?></label>
+                <select name = "status" class = "form-select bg-dark text-light border-secondary">
                     <option value = ""><?php echo h(__('t_a4028d028a', 'جميع الحالات')); ?></option>
                     <option value = "active"   <?php echo $status === 'active'   ? 'selected' : ''; ?>><?php echo h(__('t_5074192c69', 'نشطة فقط')); ?></option>
                     <option value = "inactive" <?php echo $status === 'inactive' ? 'selected' : ''; ?>><?php echo h(__('t_bdb3ebb25d', 'غير نشطة')); ?></option>
@@ -626,8 +627,8 @@ input:checked + .slider:before {
                 </select>
             </div>
             <div class = "col-12 col-md-3">
-                <label style = "color: 
-                <select name = "location" class="form-label small mb-1 form-select bg-dark text-light border-secondary">
+                <label class = "form-label small mb-1 text-light"><?php echo h(__('t_9915aece7e', 'جميع المواضع')); ?></label>
+                <select name = "location" class = "form-select bg-dark text-light border-secondary">
                     <option value = "all"><?php echo h(__('t_9915aece7e', 'جميع المواضع')); ?></option>
                     <?php foreach ($locations as $loc): ?>
                         <option value = "<?php echo h($loc); ?>" <?php echo $location === $loc ? 'selected' : ''; ?>>

@@ -432,15 +432,15 @@ require_once __DIR__ . '/../layout/app_start.php';
     <input type = "hidden" name = "csrf_token" value = "<?php echo htmlspecialchars(generate_csrf_token(), ENT_QUOTES, 'UTF-8'); ?>">
 
             <div class = "col-12 col-md-5">
-                <label class = "form-label small mb-1" style = "color: 
+                <label class = "form-label small mb-1 text-light"><?php echo h(__('t_dda805e1c7', 'ابحث باسم الملف...')); ?></label>
                 <input type = "text" name = "q" value = "<?php echo h($search); ?>"
                        class = "form-control bg-dark text-light border-secondary"
                        placeholder = "<?php echo h(__('t_dda805e1c7', 'ابحث باسم الملف...')); ?>">
             </div>
 
             <div class = "col-12 col-md-4">
-                <label style = "color: 
-                <select name = "type" class="form-label small mb-1 form-select bg-dark text-light border-secondary">
+                <label class = "form-label small mb-1 text-light"><?php echo h(__('t_cd654353e8', 'كل الملفات')); ?></label>
+                <select name = "type" class = "form-select bg-dark text-light border-secondary">
                     <option value = "" <?php echo $type === '' ? 'selected' : ''; ?>><?php echo h(__('t_cd654353e8', 'كل الملفات')); ?></option>
                     <option value = "images" <?php echo $type === 'images' ? 'selected' : ''; ?>><?php echo h(__('t_c52c6607e1', 'صور فقط')); ?></option>
                     <option value = "videos" <?php echo $type === 'videos' ? 'selected' : ''; ?>><?php echo h(__('t_d589afa239', 'فيديو فقط')); ?></option>

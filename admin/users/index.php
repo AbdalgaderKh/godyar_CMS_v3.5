@@ -424,14 +424,15 @@ html, body{
     <input type = "hidden" name = "csrf_token" value = "<?php echo htmlspecialchars(generate_csrf_token(), ENT_QUOTES, 'UTF-8'); ?>">
 
             <div class = "col-12 col-md-4">
-                <label style = "color: 
-                <input type = "text" name = "q" 
-                       value = "<?php echo h($q); ? class="form-label small mb-1 form-control bg-dark text-light border-secondary">" 
+                <label class = "form-label small mb-1 text-light"><?php echo h(__('t_174cbf594a', 'ابحث بالاسم، اسم المستخدم، أو البريد...')); ?></label>
+                <input type = "text" name = "q"
+                       value = "<?php echo h($q); ?>"
+                       class = "form-control bg-dark text-light border-secondary"
                        placeholder = "<?php echo h(__('t_174cbf594a', 'ابحث بالاسم، اسم المستخدم، أو البريد...')); ?>">
             </div>
             <div class = "col-12 col-md-3">
-                <label style = "color: 
-                <select name = "role" class="form-label small mb-1 form-select bg-dark text-light border-secondary">
+                <label class = "form-label small mb-1 text-light"><?php echo h(__('t_7f38b9650b', 'جميع الأدوار')); ?></label>
+                <select name = "role" class = "form-select bg-dark text-light border-secondary">
                     <option value = ""><?php echo h(__('t_7f38b9650b', 'جميع الأدوار')); ?></option>
                     <?php foreach ($roles as $value => $roleInfo): ?>
                         <option value = "<?php echo h($value); ?>" <?php echo $role === $value ? 'selected' : ''; ?>>
@@ -441,8 +442,8 @@ html, body{
                 </select>
             </div>
             <div class = "col-12 col-md-3">
-                <label style = "color: 
-                <select name = "status" class="form-label small mb-1 form-select bg-dark text-light border-secondary">
+                <label class = "form-label small mb-1 text-light"><?php echo h(__('t_a4028d028a', 'جميع الحالات')); ?></label>
+                <select name = "status" class = "form-select bg-dark text-light border-secondary">
                     <option value = ""><?php echo h(__('t_a4028d028a', 'جميع الحالات')); ?></option>
                     <?php foreach ($statuses as $value => $statusInfo): ?>
                         <option value = "<?php echo h($value); ?>" <?php echo $status === $value ? 'selected' : ''; ?>>
