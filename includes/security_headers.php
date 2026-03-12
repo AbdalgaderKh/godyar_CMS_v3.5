@@ -18,20 +18,22 @@ function gdy_apply_security_headers(): void
         define('GDY_CSP_NONCE', $nonce);
     }
 
-    $env = static function (string $name, string $default = ''): string {
-        if (function_exists('gdy_env') === true) {
-            return (string) gdy_env($name, $default);
+    $serverVar = static function (string $key, string $default = ''): string {
+        if (isset($_SERVER[$key]) === true) {
+            return (string) $_SERVER[$key];
         }
 
         return $default;
     };
 
-    $serverVar = static function (string $key, string $default = ''): string {
-        if (function_exists('gdy_server_var') === true) {
-            return (string) gdy_server_var($key, $default);
+    $envVar = static function (string $name, string $default = ''): string {
+        $value = getenv($name);
+
+        if ($value === false) {
+            return $default;
         }
 
-        return $default;
+        return trim((string) $value);
     };
 
     $sendHeader = static function (string $value): void {
@@ -39,42 +41,25 @@ function gdy_apply_security_headers(): void
             return;
         }
 
-        if (function_exists('gdy_header') === true) {
-            gdy_header($value);
-            return;
-        }
+        header($value);
     };
 
-    $headerList = static function (): array {
-        if (function_exists('gdy_headers_list') === true) {
-            $headers = gdy_headers_list();
-
-            return is_array($headers) === true ? $headers : [];
-        }
-
-        return [];
-    };
-
-    if ($env('GDY_SECURITY_HEADERS') === '0') {
+    if ($envVar('GDY_SECURITY_HEADERS') === '0') {
         return;
     }
 
-    $securityHeaders = [
-        'X-Content-Type-Options: nosniff',
-        'Referrer-Policy: strict-origin-when-cross-origin',
-        'X-Frame-Options: SAMEORIGIN',
-        'X-Permitted-Cross-Domain-Policies: none',
-        'Permissions-Policy: geolocation=(), microphone=(), camera=()',
-        'X-XSS-Protection: 0',
-        'Cross-Origin-Opener-Policy: same-origin',
-        'Cross-Origin-Resource-Policy: same-origin',
-    ];
+    $sendHeader('X-Content-Type-Options: nosniff');
+    $sendHeader('Referrer-Policy: strict-origin-when-cross-origin');
+    $sendHeader('X-Frame-Options: SAMEORIGIN');
+    $sendHeader('X-Permitted-Cross-Domain-Policies: none');
+    $sendHeader('Permissions-Policy: geolocation=(), microphone=(), camera=()');
+    $sendHeader('X-XSS-Protection: 0');
+    $sendHeader('Cross-Origin-Opener-Policy: same-origin');
+    $sendHeader('Cross-Origin-Resource-Policy: same-origin');
 
-    foreach ($securityHeaders as $headerValue) {
-        $sendHeader($headerValue);
-    }
+    $hstsDisabled = ($envVar('GDY_HSTS') === '0');
 
-    if ($env('GDY_HSTS') !== '0') {
+    if ($hstsDisabled === false) {
         $httpsValue = strtolower($serverVar('HTTPS', ''));
         $forwardedProto = strtolower($serverVar('HTTP_X_FORWARDED_PROTO', ''));
         $serverPort = (int) $serverVar('SERVER_PORT', '0');
@@ -95,7 +80,7 @@ function gdy_apply_security_headers(): void
 
         if ($isHttps === true) {
             $maxAge = 31536000;
-            $maxAgeEnv = $env('GDY_HSTS_MAXAGE');
+            $maxAgeEnv = $envVar('GDY_HSTS_MAXAGE');
 
             if ($maxAgeEnv !== '' && ctype_digit($maxAgeEnv) === true) {
                 $maxAge = (int) $maxAgeEnv;
@@ -105,11 +90,11 @@ function gdy_apply_security_headers(): void
         }
     }
 
-    if ($env('GDY_CSP') === '0') {
+    if ($envVar('GDY_CSP') === '0') {
         return;
     }
 
-    foreach ($headerList() as $existingHeader) {
+    foreach (headers_list() as $existingHeader) {
         if (stripos((string) $existingHeader, 'Content-Security-Policy:') === 0) {
             return;
         }
@@ -119,12 +104,9 @@ function gdy_apply_security_headers(): void
         }
     }
 
-    $useReportOnly = ($env('GDY_CSP_REPORT_ONLY') === '1');
+    $useReportOnly = ($envVar('GDY_CSP_REPORT_ONLY') === '1');
 
-    $reportUri = $env('GDY_CSP_REPORT_URI');
-    if ($reportUri === '') {
-        $reportUri = '/csp-report.php';
-    }
+    $reportUri = $envVar('GDY_CSP_REPORT_URI', '/csp-report.php');
 
     $nonce = defined('GDY_CSP_NONCE') === true ? (string) GDY_CSP_NONCE : '';
 
