@@ -1,0 +1,13 @@
+godyar CMS v2.2.8 general scan + route/meta fixes
+
+Applied fixes:
+- Fixed category controller URLs to respect language prefix for category and news links.
+- Passed canonical/meta variables using names expected by shared header.
+- Fixed NewsController to pass baseUrl/navBaseUrl/pageLang/meta/canonical/pdo to the shared renderer.
+- Added header category fallback from passed $categories when $pdo is unavailable.
+- Neutralized admin/layout/include_patch_example.php parse error.
+- Removed target=_blank on admin site links to reduce about:blank#blocked behavior.
+
+Notes:
+- .env inside the archive remains sanitized for safe sharing.
+- Keep the real .env on the server.

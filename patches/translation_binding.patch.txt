@@ -1,0 +1,32 @@
+FILE: frontend/views/partials/header.php
+- الحساب
++ <?= __('auth.account', 'Account'); ?>
+
+FILE: frontend/views/partials/header.php
+- تسجيل الدخول
++ <?= __('auth.login', 'Login'); ?>
+
+FILE: frontend/views/partials/header.php
+- إنشاء حساب
++ <?= __('auth.register', 'Create Account'); ?>
+
+FILE: frontend/views/login.php
+- أدخل بياناتك للوصول إلى حسابك.
++ <?= __('auth.login_desc', 'Enter your details to access your account.'); ?>
+
+FILE: frontend/views/register.php
+- أدخل بياناتك لإنشاء حساب جديد.
++ <?= __('auth.register_desc', 'Enter your details to create a new account.'); ?>
+
+FILE: frontend/views/search.php
+- نسخ رابط البحث
++ <?= __('search.copy_link', 'Copy search link'); ?>
+
+FILE: frontend/views/news_report.php
+- نسخ الرابط
++ <?= __('share.copy_link', 'Copy Link'); ?>
+
+FILE: frontend/views/news_report.php
+- فهرس المحتوى
++ <?= __('article.toc', 'Table of Contents'); ?>
+

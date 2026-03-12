@@ -1,0 +1,6 @@
+
+html.theme-beige, body.theme-beige{
+  --primary: #c8a56a !important;
+  --primary-dark: #a47c3c !important;
+  --primary-rgb: 200, 165, 106 !important;
+}

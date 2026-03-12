@@ -1,0 +1,112 @@
+
+RewriteEngine On
+
+RewriteCond %{REQUEST_URI} ^/(ar|en|fr)$ [NC]
+RewriteRule ^(ar|en|fr)$ /$1/ [R=301,L]
+
+RewriteCond %{HTTPS} !=on
+RewriteCond %{HTTP:X-Forwarded-Proto} !https [NC]
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+Options -Indexes
+
+RewriteCond %{REQUEST_URI} !^/\.well-known/ [NC]
+RewriteRule (^|/)\. - [F,L]
+
+<FilesMatch "(?i)^(?:\.env|\.env\..*|composer\.(?:json|lock)|package\.(?:json|lock)|phpunit\.xml|\.gitignore|\.gitattributes|\.htaccess\.bak|\.DS_Store|phpinfo\.php|info\.php|test\.php|error_log)$">
+  Require all denied
+</FilesMatch>
+
+<FilesMatch "(?i)\.(?:bak|old|swp|swo|zip|tar|gz|7z)(?:_.*)?$">
+  Require all denied
+</FilesMatch>
+
+RewriteRule ^(?:vendor|includes|src|database|docs|tools)(?:/|$) - [F,L]
+RewriteRule ^(?:storage|cache)(?:/|$) - [F,L]
+
+RewriteRule ^assets/ - [L,NC]
+RewriteRule ^uploads/ - [L,NC]
+RewriteRule ^favicon\.ico$ - [L,NC]
+RewriteRule ^robots\.txt$ - [L,NC]
+RewriteRule ^sitemap\.xml$ - [L,NC]
+RewriteRule ^sitemap-news\.xml$ - [L,NC]
+RewriteRule ^rss\.xml$ - [L,NC]
+RewriteRule ^manifest\.webmanifest$ - [L,NC]
+
+RewriteRule ^admin/admin/(.*)$ /admin/$1 [R=301,L,NC]
+RewriteRule ^admin/([^/]+)/admin/\1/(.*)$ /admin/$1/$2 [R=301,L,NC]
+RewriteRule ^admin$ /admin/ [R=301,L,NC]
+RewriteRule ^admin/?$ admin/index.php [L,NC]
+RewriteRule ^admin/login/?$ admin/login.php [L,NC]
+RewriteRule ^admin/logout/?$ admin/logout.php [L,NC]
+
+RewriteCond %{REQUEST_URI} ^/admin(?:/|$) [NC]
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+RewriteCond %{REQUEST_URI} ^/admin(?:/|$) [NC]
+RewriteRule ^admin/(.*)$ admin/$1 [L,NC]
+
+RewriteRule ^(?:ar|en|fr)/page/about/?$ app.php [L,NC,QSA]
+RewriteRule ^(?:ar|en|fr)/page/privacy/?$ app.php [L,NC,QSA]
+RewriteRule ^(?:ar|en|fr)/page/terms/?$ app.php [L,NC,QSA]
+RewriteRule ^(?:ar|en|fr)/page/contact/?$ app.php [L,NC,QSA]
+RewriteRule ^(?:ar|en|fr)/contact/?$ app.php [L,NC,QSA]
+
+RewriteRule ^page/about/?$ app.php [L,NC,QSA]
+RewriteRule ^page/privacy/?$ app.php [L,NC,QSA]
+RewriteRule ^page/terms/?$ app.php [L,NC,QSA]
+RewriteRule ^page/contact/?$ app.php [L,NC,QSA]
+RewriteRule ^contact/?$ app.php [L,NC,QSA]
+RewriteRule ^contact\.php$ app.php [L,NC,QSA]
+RewriteRule ^contact-submit\.php$ app.php [L,NC,QSA]
+
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/plain text/css text/javascript application/javascript application/json application/xml text/xml image/svg+xml
+</IfModule>
+
+<IfModule mod_brotli.c>
+  BrotliCompressionQuality 5
+  AddOutputFilterByType BROTLI_COMPRESS text/plain text/css text/javascript application/javascript application/json application/xml text/xml image/svg+xml
+</IfModule>
+
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType image/avif "access plus 30 days"
+  ExpiresByType image/webp "access plus 30 days"
+  ExpiresByType image/png "access plus 30 days"
+  ExpiresByType image/jpeg "access plus 30 days"
+  ExpiresByType image/svg+xml "access plus 30 days"
+  ExpiresByType image/gif "access plus 30 days"
+  ExpiresByType image/x-icon "access plus 30 days"
+  ExpiresByType text/css "access plus 14 days"
+  ExpiresByType application/javascript "access plus 14 days"
+  ExpiresByType text/javascript "access plus 14 days"
+  ExpiresByType font/woff2 "access plus 180 days"
+  ExpiresByType font/woff "access plus 180 days"
+</IfModule>
+
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-Frame-Options "DENY"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "geolocation=(), microphone=(), camera=()"
+  Header always set X-XSS-Protection "0"
+  Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload" env=HTTPS
+  Header always unset Content-Security-Policy
+
+  <FilesMatch "\.(?:css|js|mjs|png|jpe?g|webp|svg|gif|ico|woff2?|ttf|eot|mp4|mp3)$">
+    Header set Cache-Control "public, max-age=1209600, stale-while-revalidate=86400, immutable"
+  </FilesMatch>
+</IfModule>
+
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+RewriteRule ^ app.php [L,QSA]
+
+<IfModule mime_module>
+  AddHandler application/x-httpd-ea-php84___lsphp .php .php8 .phtml
+</IfModule>

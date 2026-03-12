@@ -1,0 +1,1 @@
+Patched logo persistence via storage/site_branding.php fallback and frontend/admin readers.

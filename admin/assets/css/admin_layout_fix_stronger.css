@@ -1,0 +1,41 @@
+
+html body .sidebar,
+html body .admin-sidebar,
+html body .app-sidebar,
+html body aside.sidebar,
+html body aside.admin-sidebar,
+html body [class*="sidebar"] {
+  width: 300px !important;
+  min-width: 300px !important;
+}
+
+html body .sidebar .label,
+html body .sidebar .title,
+html body .sidebar .text,
+html body .sidebar .menu-text,
+html body .sidebar .nav-text,
+html body .sidebar .item-text,
+html body .admin-sidebar .label,
+html body .admin-sidebar .title,
+html body .admin-sidebar .text,
+html body .admin-sidebar .menu-text,
+html body .admin-sidebar .nav-text,
+html body .admin-sidebar .item-text {
+  display: inline-block !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  white-space: normal !important;
+  width: auto !important;
+  max-width: none !important;
+  overflow: visible !important;
+}
+
+html body.sidebar-collapsed .sidebar,
+html body.sidebar-mini .sidebar,
+html body.compact-sidebar .sidebar,
+html body.menu-collapsed .sidebar,
+html body [class*="sidebar"].collapsed,
+html body [class*="sidebar"].is-collapsed {
+  width: 300px !important;
+  min-width: 300px !important;
+}

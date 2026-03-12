@@ -1,0 +1,42 @@
+
+
+.article img,
+.article-content img,
+.article-body img,
+.news-article img,
+.news-content img,
+.post img,
+.post-content img,
+.single img {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+
+    
+    max-height: 420px;
+    object-fit: cover;
+    aspect-ratio: 16 / 9;
+
+    margin: 0 auto 16px auto;
+    border-radius: 12px;
+}
+
+main img {
+    max-width: 100%;
+    height: auto;
+}
+
+@media (max-width: 768px) {
+    .article img,
+    .article-content img,
+    .article-body img,
+    .news-article img,
+    .news-content img,
+    .post img,
+    .post-content img,
+    .single img {
+        max-height: 240px;
+        aspect-ratio: 16 / 10;
+    }
+}

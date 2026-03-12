@@ -1,0 +1,6 @@
+v2.3.1 fixes:
+- Removed leading output from language files causing headers already sent.
+- Unified csrf_token and _csrf session tokens.
+- Bootstrap now accepts both csrf_token and _csrf.
+- Login/register forms use language-aware action URLs.
+- Renamed packaged .env to .env.example to avoid overwriting production secrets.

@@ -1,0 +1,86 @@
+
+.gdy-settings-form{
+  margin-top: .25rem;
+}
+
+.gdy-settings-cards{
+  display:grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+@media (min-width: 992px){
+  .gdy-settings-cards{
+    grid-template-columns: 1fr 1fr;
+    align-items:start;
+  }
+  .gdy-settings-cards > section:nth-child(1){
+    grid-column: 1 / -1;
+  }
+}
+
+.gdy-form-card{
+  overflow:hidden;
+}
+
+.gdy-card-title{
+  font-size: 1.05rem;
+  font-weight: 800;
+  letter-spacing: .2px;
+}
+.gdy-card-subtitle{
+  margin-top: .15rem;
+  color: rgba(156,163,175,.95);
+  font-size: .9rem;
+}
+
+.gdy-form-grid{
+  display:grid;
+  grid-template-columns: 1fr;
+  gap: .9rem;
+}
+@media (min-width: 768px){
+  .gdy-form-grid{
+    grid-template-columns: 1fr 1fr;
+  }
+  .gdy-span-2{ grid-column: 1 / -1; }
+}
+
+.gdy-field{
+  min-width: 0;
+}
+
+.gdy-divider{
+  margin: 1rem 0;
+}
+
+.gdy-hint{
+  margin-top: .35rem;
+  color: rgba(156,163,175,.92);
+  font-size: .85rem;
+}
+
+.gdy-link{
+  color: inherit;
+  opacity: .95;
+}
+.gdy-link:hover{
+  opacity: 1;
+  text-decoration: underline;
+}
+
+.gdy-form-actions{
+  margin-top: 1rem;
+  display:flex;
+  justify-content:flex-start;
+}
+
+.btn.btn-primary.btn-lg{
+  border-radius: 16px;
+}
+
+.admin-content .row,
+.admin-content .col-md-9,
+.admin-content .col-md-3{
+  min-width:0;
+}

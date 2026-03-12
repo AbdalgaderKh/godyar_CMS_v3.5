@@ -1,0 +1,16 @@
+*
+!.gitignore
+
+# Sensitive dumps / secrets
+*.sql
+*.sql.gz
+*.bak
+*.backup
+*.dump
+*.pem
+*.key
+*.p12
+*.crt
+*.pfx
+/storage/sessions/*
+/storage/revisions/*

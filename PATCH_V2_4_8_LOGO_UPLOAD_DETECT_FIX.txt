@@ -1,0 +1,1 @@
+Patched logo upload detection to accept alternate file keys and log multipart-without-files cases. Added explicit submit type.

@@ -1,0 +1,6 @@
+
+html.theme-brown, body.theme-brown{
+  --primary: #a16207 !important;
+  --primary-dark: #854d0e !important;
+  --primary-rgb: 161, 98, 7 !important;
+}

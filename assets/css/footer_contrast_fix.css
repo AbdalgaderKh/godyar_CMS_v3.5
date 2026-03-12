@@ -1,0 +1,28 @@
+
+footer,
+.footer {
+    color: #1e3a37 !important;
+}
+
+footer a,
+.footer a {
+    color: #174d47 !important;
+}
+
+footer a:hover,
+.footer a:hover {
+    color: #0d312d !important;
+}
+
+footer h1,
+footer h2,
+footer h3,
+footer h4,
+footer h5,
+footer h6 {
+    color: #0e2f2c !important;
+}
+
+footer .copyright {
+    color: #243b38 !important;
+}

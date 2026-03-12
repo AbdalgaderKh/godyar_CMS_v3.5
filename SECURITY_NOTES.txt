@@ -1,0 +1,37 @@
+Godyar Security Hardening Patch v1
+=================================
+
+What it changes
+1) includes/bootstrap.php
+- Removes @ suppression for session_set_cookie_params/session_start
+- Enforces stronger session ini settings before session_start:
+  session.use_strict_mode=1
+  session.use_only_cookies=1
+  session.cookie_httponly=1
+  session.cookie_secure=auto
+  session.cookie_samesite=Lax (safer with logins; Strict may break external flows)
+- Adds csrf_field() helper
+- Adds GLOBAL CSRF CHECK for all POST requests (report-only by default; optional enforcement)
+  - Allow-listed paths: /admin/api/* and /api/*
+  - Reads token from POST[_csrf] or header X-CSRF-Token
+  - Returns 403 and exits on invalid token
+
+2) .htaccess
+- Adds CSP header (compatible with current inline styles/scripts)
+- Disables display_errors when using mod_php
+- Blocks public access to backup/archive files (*.zip, *.bak, *.sql, *.log, ...)
+- Disables directory listing
+
+3) storage/cache/index.php
+- Prevents directory browsing and prepares cache folder existence.
+
+Important actions you MUST do manually
+- Delete/move any zip/backup files from public_html (the audit shows many).
+- Ensure your forms include <?= csrf_field() ?> inside <form> for best UX.
+  (Otherwise POST requests will be blocked by the global CSRF enforcement.)
+
+If something breaks
+- For endpoints that legitimately POST without CSRF (webhooks), add them to the allow-list regex in includes/bootstrap.php.
+
+v1.1 change:
+- CSRF is report-only by default (won't break existing forms). Enable enforcement by defining GODYAR_CSRF_ENFORCE=true.

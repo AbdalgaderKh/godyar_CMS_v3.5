@@ -1,0 +1,15 @@
+Godyar CMS v2.3 Stable Architecture Cleanup
+
+Implemented:
+- Added centralized language-aware URL helpers in includes/architecture_cleanup.php
+- Bootstrapped architecture helpers and plugin helper loader from includes/bootstrap.php
+- Improved FrontendRenderer defaults for baseUrl/navBaseUrl/pageLang/homeUrl and fallback partial header/footer
+- Normalized category/news URL generation in controllers and views
+- Fixed duplicate DOCTYPE in frontend header
+- Stabilized article/comment redirect URLs to preserve current language prefix
+- Cleaned admin plugin path resolution to support installations that store plugins under /admin/plugins
+- Cleaned malformed CSRF fallback HTML in admin plugin pages
+
+Notes:
+- .env inside archive remains share-safe and should not overwrite production secrets.
+- Clear OPcache and application cache after deployment.

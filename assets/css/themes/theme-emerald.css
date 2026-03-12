@@ -1,0 +1,6 @@
+
+html.theme-emerald, body.theme-emerald{
+  --primary: #10b981 !important;
+  --primary-dark: #047857 !important;
+  --primary-rgb: 16, 185, 129 !important;
+}

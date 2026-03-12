@@ -1,0 +1,65 @@
+
+
+@media (min-width: 992px) {
+  .sidebar,
+  .admin-sidebar,
+  .app-sidebar,
+  aside.sidebar,
+  aside.admin-sidebar,
+  #sidebar,
+  #adminSidebar {
+    width: 300px !important;
+    min-width: 300px !important;
+    max-width: 300px !important;
+    transform: none !important;
+  }
+
+  body.sidebar-collapsed .sidebar,
+  body.sidebar-mini .sidebar,
+  body.compact-sidebar .sidebar,
+  body.menu-collapsed .sidebar,
+  body.aside-collapsed .sidebar,
+  .sidebar.is-collapsed,
+  .sidebar.collapsed,
+  .admin-sidebar.is-collapsed,
+  .admin-sidebar.collapsed {
+    width: 300px !important;
+    min-width: 300px !important;
+    max-width: 300px !important;
+    transform: none !important;
+  }
+
+  .sidebar .menu-text,
+  .sidebar .nav-text,
+  .sidebar .item-text,
+  .sidebar .label,
+  .sidebar .title,
+  .sidebar span,
+  .sidebar a span,
+  .admin-sidebar .menu-text,
+  .admin-sidebar .nav-text,
+  .admin-sidebar .item-text,
+  .admin-sidebar .label,
+  .admin-sidebar .title,
+  .admin-sidebar span,
+  .admin-sidebar a span {
+    display: inline !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    white-space: nowrap !important;
+    width: auto !important;
+    max-width: none !important;
+    overflow: visible !important;
+  }
+
+  .sidebar a,
+  .admin-sidebar a {
+    justify-content: flex-start !important;
+    gap: 10px !important;
+  }
+}
+
+body.admin,
+body[class*="admin"] {
+  direction: rtl !important;
+}

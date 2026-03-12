@@ -1,0 +1,6 @@
+
+html.theme-blue, body.theme-blue{
+  --primary: #3b82f6 !important;
+  --primary-dark: #1d4ed8 !important;
+  --primary-rgb: 59, 130, 246 !important;
+}

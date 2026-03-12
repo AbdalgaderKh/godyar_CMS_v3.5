@@ -1,0 +1,14 @@
+User-agent: *
+Allow: /
+
+# Admin/installer/internal tooling should not be indexed
+Disallow: /admin/
+Disallow: /install/
+Disallow: /migrations/
+Disallow: /database/
+Disallow: /includes/
+Disallow: /vendor/
+Disallow: /cache/
+
+Sitemap: /sitemap.xml
+Sitemap: /sitemap-news.xml
