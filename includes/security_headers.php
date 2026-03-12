@@ -22,35 +22,30 @@ function gdy_apply_security_headers(): void
         if (isset($_SERVER[$key]) === true) {
             return (string) $_SERVER[$key];
         }
-
         return $default;
     };
 
-    $sendHeader = static function (string $headerValue): void {
-        header($headerValue);
-    };
+    $env = static function (string $name): string {
+        $value = $_ENV[$name] ?? $_SERVER[$name] ?? null;
 
-    $isDisabledByEnv = static function (string $envName): bool {
-        $value = getenv($envName);
-
-        if ($value === false) {
-            return false;
+        if ($value === null) {
+            return '';
         }
 
-        return trim((string) $value) === '0';
+        return trim((string) $value);
     };
 
-    $isEnabledByEnv = static function (string $envName): bool {
-        $value = getenv($envName);
-
-        if ($value === false) {
-            return false;
+    $sendHeader = static function (string $value): void {
+        if ($value !== '') {
+            header($value);
         }
-
-        return trim((string) $value) === '1';
     };
 
-    if ($isDisabledByEnv('GDY_SECURITY_HEADERS') === true) {
+    $headerList = static function (): array {
+        return function_exists('headers_list') === true ? headers_list() : [];
+    };
+
+    if ($env('GDY_SECURITY_HEADERS') === '0') {
         return;
     }
 
@@ -69,7 +64,7 @@ function gdy_apply_security_headers(): void
         $sendHeader($headerValue);
     }
 
-    if ($isDisabledByEnv('GDY_HSTS') === false) {
+    if ($env('GDY_HSTS') !== '0') {
         $httpsValue = strtolower($serverVar('HTTPS', ''));
         $forwardedProto = strtolower($serverVar('HTTP_X_FORWARDED_PROTO', ''));
         $serverPort = (int) $serverVar('SERVER_PORT', '0');
@@ -89,22 +84,22 @@ function gdy_apply_security_headers(): void
         }
 
         if ($isHttps === true) {
-            $maxAgeValue = getenv('GDY_HSTS_MAXAGE');
             $maxAge = 31536000;
+            $maxAgeEnv = $env('GDY_HSTS_MAXAGE');
 
-            if ($maxAgeValue !== false && ctype_digit((string) $maxAgeValue) === true) {
-                $maxAge = (int) $maxAgeValue;
+            if ($maxAgeEnv !== '' && ctype_digit($maxAgeEnv) === true) {
+                $maxAge = (int) $maxAgeEnv;
             }
 
             $sendHeader('Strict-Transport-Security: max-age=' . $maxAge . '; includeSubDomains');
         }
     }
 
-    if ($isDisabledByEnv('GDY_CSP') === true) {
+    if ($env('GDY_CSP') === '0') {
         return;
     }
 
-    foreach (headers_list() as $existingHeader) {
+    foreach ($headerList() as $existingHeader) {
         if (stripos($existingHeader, 'Content-Security-Policy:') === 0) {
             return;
         }
@@ -114,19 +109,14 @@ function gdy_apply_security_headers(): void
         }
     }
 
-    $useReportOnly = $isEnabledByEnv('GDY_CSP_REPORT_ONLY');
+    $useReportOnly = ($env('GDY_CSP_REPORT_ONLY') === '1');
 
-    $reportUriValue = getenv('GDY_CSP_REPORT_URI');
-    $reportUri = '/csp-report.php';
-
-    if ($reportUriValue !== false && trim((string) $reportUriValue) !== '') {
-        $reportUri = trim((string) $reportUriValue);
+    $reportUri = $env('GDY_CSP_REPORT_URI');
+    if ($reportUri === '') {
+        $reportUri = '/csp-report.php';
     }
 
-    $nonce = '';
-    if (defined('GDY_CSP_NONCE') === true) {
-        $nonce = (string) GDY_CSP_NONCE;
-    }
+    $nonce = defined('GDY_CSP_NONCE') === true ? (string) GDY_CSP_NONCE : '';
 
     $csp = "default-src 'self'; "
         . "base-uri 'self'; "
